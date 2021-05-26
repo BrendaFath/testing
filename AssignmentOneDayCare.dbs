@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="QuickDBD-Daycare (1).sql" id="Project_5a2" database="MySql" >
+	<schema name="public" >
+		<table name="Allergies" spec="" >
+			<column name="AllergyID" type="varchar" jt="12" mandatory="y" />
+			<column name="ChildID" type="int" jt="4" mandatory="y" />
+			<index name="PK_Allergies" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="AllergyID" options=" ASC" />
+			</index>
+			<fk name="FK_Allergies_AllergyID" to_schema="public" to_table="Child" >
+				<fk_column name="AllergyID" pk="ChildID" />
+			</fk>
+		</table>
+		<table name="Car" spec="" >
+			<column name="CarID" type="varchar" jt="12" mandatory="y" />
+			<column name="ParentID" type="int" jt="4" mandatory="y" />
+			<column name="Make" type="text" jt="-1" mandatory="y" />
+			<column name="Model" type="text" jt="-1" mandatory="y" />
+			<column name="Color" type="text" jt="-1" mandatory="y" />
+			<index name="PK_Car" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="CarID" options=" ASC" />
+			</index>
+			<fk name="FK_Car_CarID" to_schema="public" to_table="Parent" >
+				<fk_column name="CarID" pk="ParentID" />
+			</fk>
+		</table>
+		<table name="Child" spec="" >
+			<column name="ChildID" type="varchar" jt="12" mandatory="y" />
+			<column name="ParentID" type="int" jt="4" mandatory="y" />
+			<column name="Name" type="text" jt="-1" mandatory="y" />
+			<column name="Age" type="int" jt="4" mandatory="y" />
+			<column name="Birthdate" type="int" jt="4" mandatory="y" />
+			<column name="Special" type="text" jt="-1" mandatory="y" />
+			<column name="StaffID" type="int" jt="4" mandatory="y" />
+			<column name="StaffName" type="text" jt="-1" mandatory="y" />
+			<index name="PK_Child" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="ChildID" options=" ASC" />
+			</index>
+			<fk name="FK_Child_ChildID" to_schema="public" to_table="Staff" >
+				<fk_column name="ChildID" pk="StaffID" />
+			</fk>
+		</table>
+		<table name="Instructions" spec="" >
+			<column name="SpecialInstID" type="varchar" jt="12" mandatory="y" />
+			<column name="ChildID" type="int" jt="4" mandatory="y" />
+			<index name="PK_Instructions" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="SpecialInstID" options=" ASC" />
+			</index>
+			<fk name="FK_Instructions_SpecialInstID" to_schema="public" to_table="Child" >
+				<fk_column name="SpecialInstID" pk="ChildID" />
+			</fk>
+		</table>
+		<table name="Parent" spec="" >
+			<column name="ParentID" type="int" jt="4" mandatory="y" />
+			<column name="ParentLastName" type="text" jt="-1" mandatory="y" />
+			<column name="ParentFirstName" type="text" jt="-1" mandatory="y" />
+			<column name="Address" type="text" jt="-1" mandatory="y" />
+			<column name="ChildID" type="int" jt="4" mandatory="y" />
+			<column name="Co-Parent" type="text" jt="-1" mandatory="y" />
+			<column name="CarID" type="int" jt="4" mandatory="y" />
+			<column name="LicensePlate" type="int" jt="4" mandatory="y" />
+			<column name="DLnumber" type="int" jt="4" mandatory="y" />
+			<index name="PK_Parent" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="ParentID" options=" ASC" />
+				<column name="ChildID" options=" ASC" />
+			</index>
+		</table>
+		<table name="Staff" spec="" >
+			<column name="StaffID" type="int" jt="4" mandatory="y" />
+			<column name="StaffName" type="text" jt="-1" mandatory="y" />
+			<column name="Address" type="text" jt="-1" mandatory="y" />
+			<column name="Pay-Rate" type="int" jt="4" mandatory="y" />
+			<index name="PK_Staff" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="StaffID" options=" ASC" />
+			</index>
+		</table>
+		<table name="Supplies" spec="" >
+			<column name="SupplyID" type="varchar" jt="12" mandatory="y" />
+			<column name="ChildID" type="int" jt="4" mandatory="y" />
+			<index name="PK_Supplies" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="SupplyID" options=" ASC" />
+			</index>
+			<fk name="FK_Supplies_SupplyID" to_schema="public" to_table="Child" >
+				<fk_column name="SupplyID" pk="ChildID" />
+			</fk>
+		</table>
+		<table name="Times" spec="" >
+			<column name="ChildID" type="int" jt="4" mandatory="y" />
+			<column name="ChildName" type="text" jt="-1" mandatory="y" />
+			<column name="ParentID" type="int" jt="4" mandatory="y" />
+			<column name="ParentName" type="text" jt="-1" mandatory="y" />
+			<column name="PickUp" type="int" jt="4" mandatory="y" />
+			<column name="DropOff" type="int" jt="4" mandatory="y" />
+			<index name="PK_Times" unique="PRIMARY_KEY" spec=" CLUSTERED" >
+				<column name="ChildID" options=" ASC" />
+				<column name="ParentID" options=" ASC" />
+			</index>
+			<fk name="FK_Times_ChildID" to_schema="public" to_table="Parent" >
+				<fk_column name="ChildID" pk="ParentID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Parsed Script Layout" id="Layout_1078" show_relation="columns" >
+		<entity schema="public" name="Allergies" color="BED3F4" x="448" y="144" />
+		<entity schema="public" name="Car" color="C7F4BE" x="928" y="144" />
+		<entity schema="public" name="Child" color="BED3F4" x="240" y="144" />
+		<entity schema="public" name="Instructions" color="BED3F4" x="448" y="416" />
+		<entity schema="public" name="Parent" color="C7F4BE" x="688" y="144" />
+		<entity schema="public" name="Staff" color="BED3F4" x="240" y="416" />
+		<entity schema="public" name="Supplies" color="BED3F4" x="48" y="416" />
+		<entity schema="public" name="Times" color="C7F4BE" x="928" y="432" />
+		<callout x="240" y="48" pointer="Round" >
+			<comment><![CDATA[Current layout is generated by parsing the SQL script.
+DbSchema is in 'offline' mode (not connected to any database).]]></comment>
+		</callout>
+		<script name="QuickDBD-Daycare (1).sql" id="Editor_1abf" language="SQL" >
+			<string><![CDATA[ï»¿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/#/d/sn5Rs2
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+
+
+SET XACT_ABORT ON
+
+BEGIN TRANSACTION QUICKDBD
+
+CREATE TABLE [Child] (
+    [ChildID] -  NOT NULL ,
+    [ParentID] int  NOT NULL ,
+    [Name] text  NOT NULL ,
+    [Age] Int  NOT NULL ,
+    [Birthdate] int  NOT NULL ,
+    [Special] text  NOT NULL ,
+    [StaffID] int  NOT NULL ,
+    [StaffName] text  NOT NULL ,
+    CONSTRAINT [PK_Child] PRIMARY KEY CLUSTERED (
+        [ChildID] ASC
+    )
+)
+
+CREATE TABLE [Instructions] (
+    [SpecialInstID] ->  NOT NULL ,
+    [ChildID] int  NOT NULL ,
+    CONSTRAINT [PK_Instructions] PRIMARY KEY CLUSTERED (
+        [SpecialInstID] ASC
+    )
+)
+
+CREATE TABLE [Allergies] (
+    [AllergyID] ->  NOT NULL ,
+    [ChildID] int  NOT NULL ,
+    CONSTRAINT [PK_Allergies] PRIMARY KEY CLUSTERED (
+        [AllergyID] ASC
+    )
+)
+
+CREATE TABLE [Car] (
+    [CarID] -  NOT NULL ,
+    [ParentID] int  NOT NULL ,
+    [Make] text  NOT NULL ,
+    [Model] text  NOT NULL ,
+    [Color] text  NOT NULL ,
+    CONSTRAINT [PK_Car] PRIMARY KEY CLUSTERED (
+        [CarID] ASC
+    )
+)
+
+CREATE TABLE [Parent] (
+    [ParentID] int  NOT NULL ,
+    [ParentLastName] text  NOT NULL ,
+    [ParentFirstName] text  NOT NULL ,
+    [Address] text  NOT NULL ,
+    [ChildID] int  NOT NULL ,
+    [Co-Parent] text  NOT NULL ,
+    [CarID] int  NOT NULL ,
+    [LicensePlate] int  NOT NULL ,
+    [DLnumber] int  NOT NULL ,
+    CONSTRAINT [PK_Parent] PRIMARY KEY CLUSTERED (
+        [ParentID] ASC,[ChildID] ASC
+    )
+)
+
+CREATE TABLE [Staff] (
+    [StaffID] int  NOT NULL ,
+    [StaffName] text  NOT NULL ,
+    [Address] text  NOT NULL ,
+    [Pay-Rate] Int  NOT NULL ,
+    CONSTRAINT [PK_Staff] PRIMARY KEY CLUSTERED (
+        [StaffID] ASC
+    )
+)
+
+CREATE TABLE [Supplies] (
+    [SupplyID] >-  NOT NULL ,
+    [ChildID] int  NOT NULL ,
+    CONSTRAINT [PK_Supplies] PRIMARY KEY CLUSTERED (
+        [SupplyID] ASC
+    )
+)
+
+CREATE TABLE [Times] (
+    [ChildID] int  NOT NULL ,
+    [ChildName] text  NOT NULL ,
+    [ParentID] int  NOT NULL ,
+    [ParentName] text  NOT NULL ,
+    [PickUp] int  NOT NULL ,
+    [DropOff] int  NOT NULL ,
+    CONSTRAINT [PK_Times] PRIMARY KEY CLUSTERED (
+        [ChildID] ASC,[ParentID] ASC
+    )
+)
+
+ALTER TABLE [Child] WITH CHECK ADD CONSTRAINT [FK_Child_ChildID] FOREIGN KEY([ChildID])
+REFERENCES [Staff] ([StaffID])
+
+ALTER TABLE [Child] CHECK CONSTRAINT [FK_Child_ChildID]
+
+ALTER TABLE [Instructions] WITH CHECK ADD CONSTRAINT [FK_Instructions_SpecialInstID] FOREIGN KEY([SpecialInstID])
+REFERENCES [Child] ([ChildID])
+
+ALTER TABLE [Instructions] CHECK CONSTRAINT [FK_Instructions_SpecialInstID]
+
+ALTER TABLE [Allergies] WITH CHECK ADD CONSTRAINT [FK_Allergies_AllergyID] FOREIGN KEY([AllergyID])
+REFERENCES [Child] ([ChildID])
+
+ALTER TABLE [Allergies] CHECK CONSTRAINT [FK_Allergies_AllergyID]
+
+ALTER TABLE [Car] WITH CHECK ADD CONSTRAINT [FK_Car_CarID] FOREIGN KEY([CarID])
+REFERENCES [Parent] ([ParentID])
+
+ALTER TABLE [Car] CHECK CONSTRAINT [FK_Car_CarID]
+
+ALTER TABLE [Supplies] WITH CHECK ADD CONSTRAINT [FK_Supplies_SupplyID] FOREIGN KEY([SupplyID])
+REFERENCES [Child] ([ChildID])
+
+ALTER TABLE [Supplies] CHECK CONSTRAINT [FK_Supplies_SupplyID]
+
+ALTER TABLE [Times] WITH CHECK ADD CONSTRAINT [FK_Times_ChildID] FOREIGN KEY([ChildID])
+REFERENCES [Parent] ([ParentID])
+
+ALTER TABLE [Times] CHECK CONSTRAINT [FK_Times_ChildID]
+
+COMMIT TRANSACTION QUICKDBD]]></string>
+		</script>
+	</layout>
+</project>
